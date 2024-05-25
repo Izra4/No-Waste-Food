@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->uuid('product_id');
-            $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
         });
