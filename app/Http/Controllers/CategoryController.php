@@ -24,4 +24,20 @@ class CategoryController extends Controller
         $category = Category::select('id', 'name')->get();
         return response()->json($category);
     }
+
+    public function removeProd($id)
+    {
+        $category = Category::find($id);
+        $category->products()->detach();
+    }
+
+    public function delete($id)
+    {
+        $category = Category::findorFail($id);
+        $this->removeProd($id);
+        $category->delete();
+        return response()->json([
+            "message" => "Category deleted successfully",
+        ]);
+    }
 }
