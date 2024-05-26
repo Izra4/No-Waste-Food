@@ -14,6 +14,10 @@ class Category extends Model
         'name',
     ];
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');

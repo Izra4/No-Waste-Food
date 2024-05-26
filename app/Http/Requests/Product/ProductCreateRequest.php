@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductCreateRequest extends FormRequest
 {
@@ -31,5 +32,12 @@ class ProductCreateRequest extends FormRequest
             'categories' => 'array',
             'categories.*' => ['integer','exists:categories,id'],
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response([
+            "error" => $validator->getMessageBag()
+        ],400));
     }
 }
