@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -15,6 +14,7 @@ Route::prefix('product')->group(function(){
 });
 
 Route::prefix('category')->group(function(){
+   Route::get("/",[CategoryController::class, 'index']);
    Route::post('/create',[CategoryController::class, 'store']);
 });
 

@@ -18,4 +18,10 @@ class CategoryController extends Controller
 
         return response()->json($category, 201);
     }
+
+    public function index()
+    {
+        $category = Category::select('id', 'name')->get();
+        return response()->json($category);
+    }
 }
